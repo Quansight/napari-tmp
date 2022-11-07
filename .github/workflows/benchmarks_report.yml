@@ -2,6 +2,11 @@
 # We need a dual workflow to make sure the token has the needed permissions to post comments
 # See https://stackoverflow.com/a/71683208 for more details
 
+# When this workflow is triggered, it pulls the latest version of this file on
+# the default branch. Changes to this file won't be reflected until after the
+# PR is merged.
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_run
+
 name: "Benchmarks - Report"
 
 on:
