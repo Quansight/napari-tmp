@@ -79,8 +79,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run ${{ matrix.benchmark-name }} benchmarks
-        id: run_benchmark
+      - id: run_benchmark
+        name: Run ${{ matrix.benchmark-name }} benchmarks
         env:
           # asv will checkout commits, which might contain LFS artifacts; ignore those errors since
           # they are probably just documentation PNGs not needed here anyway
