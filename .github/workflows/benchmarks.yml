@@ -87,6 +87,7 @@ jobs:
           GIT_LFS_SKIP_SMUDGE: 1
         run: |
           echo ${{ matrix.benchmark-name }} > asv_continuous.log
+          mkdir -p .asv/results
 
       - name: Report Failures as Issue
         if: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && failure() }}
