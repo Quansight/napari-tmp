@@ -1,4 +1,4 @@
-# napari
+# napari.
 
 ### multi-dimensional image viewer for python
 
