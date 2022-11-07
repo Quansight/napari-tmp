@@ -89,6 +89,18 @@ jobs:
           echo ${{ matrix.benchmark-name }} > asv_continuous.log
           mkdir -p .asv/results
 
+          if [[ $GITHUB_EVENT_NAME == pull_request ]]; then
+            EVENT_NAME="PR #${{ github.event.pull_request.number }}"
+            BASE_REF=${{ github.event.pull_request.base.sha }}
+            CONTENDER_REF=${GITHUB_SHA}
+            echo "Baseline:  ${BASE_REF} (${{ github.event.pull_request.base.label }})"
+            echo "Contender: ${CONTENDER_REF} (${{ github.event.pull_request.head.label }})"
+          fi
+
+          echo "EVENT_NAME=$EVENT_NAME" >> $GITHUB_ENV
+          echo "BASE_REF=$BASE_REF" >> $GITHUB_ENV
+          echo "CONTENDER_REF=$CONTENDER_REF" >> $GITHUB_ENV
+
       - name: Report Failures as Issue
         if: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && failure() }}
         uses: JasonEtco/create-an-issue@v2
